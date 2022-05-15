@@ -28,9 +28,10 @@ public class JoyStickMove : MonoBehaviour
 
     private void Initialization() // 初期設定
     {
+        Debug.Log("JoyStic Init");
         // 使用端末の画面の解消度に対応させる
         stickMovement = stickRange * (Screen.width + Screen.height) / 100;
-        // Debug.Log(stickMovement);
+        Debug.Log(stickMovement);
 
         joyStickRectTransform = joyStick.GetComponent<RectTransform>();
 
@@ -74,6 +75,7 @@ public class JoyStickMove : MonoBehaviour
 
     public void PointerDown(BaseEventData data) // 入力中に呼ぶ関数
     {
+        Debug.Log("PointerDown");
         // dataに格納されたPonterEventDataをpointerに入れる
         PointerEventData pointer = data as PointerEventData;
 
@@ -85,6 +87,7 @@ public class JoyStickMove : MonoBehaviour
 
     public void PointerUp(BaseEventData data) // 指を離したとき
     {
+        Debug.Log("PointerUp");
         // joystickのポジション初期化関数
         PositionInitialization();
 
@@ -93,6 +96,7 @@ public class JoyStickMove : MonoBehaviour
 
     public void PositionInitialization() // JoyStickのPosition初期化
     {
+        Debug.Log("PointerInit");
         joyStickRectTransform.anchoredPosition = Vector2.down;
 
         // 指を離したらポジションを初期化

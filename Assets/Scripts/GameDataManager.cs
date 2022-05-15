@@ -28,8 +28,6 @@ public class GameDataManager : MonoBehaviour
 
     public Text TextCountDown;
 
-    public Text gameSpeedText;
-
     [SerializeField] ScoreManager scoreManager;
 
     [SerializeField] AudioSource audioSourceNormal;
@@ -138,7 +136,6 @@ public class GameDataManager : MonoBehaviour
             GameOverPanel.SetActive(true);
         }
 
-        gameSpeedText.text = string.Format("SPEED : " + gameSpeed);
     }
 
 }
