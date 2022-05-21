@@ -75,7 +75,7 @@ public class JoyStickMove : MonoBehaviour
 
     public void PointerDown(BaseEventData data) // 入力中に呼ぶ関数
     {
-        Debug.Log("PointerDown");
+        // Debug.Log("PointerDown");
         // dataに格納されたPonterEventDataをpointerに入れる
         PointerEventData pointer = data as PointerEventData;
 
@@ -87,7 +87,7 @@ public class JoyStickMove : MonoBehaviour
 
     public void PointerUp(BaseEventData data) // 指を離したとき
     {
-        Debug.Log("PointerUp");
+        // Debug.Log("PointerUp");
         // joystickのポジション初期化関数
         PositionInitialization();
 
@@ -96,7 +96,7 @@ public class JoyStickMove : MonoBehaviour
 
     public void PositionInitialization() // JoyStickのPosition初期化
     {
-        Debug.Log("PointerInit");
+        // Debug.Log("PointerInit");
         joyStickRectTransform.anchoredPosition = Vector2.down;
 
         // 指を離したらポジションを初期化

@@ -28,7 +28,7 @@ public class GameDataManager : MonoBehaviour
 
     public Text TextCountDown;
 
-    [SerializeField] ScoreManager scoreManager;
+    // [SerializeField] ScoreManager scoreManager;
 
     [SerializeField] AudioSource audioSourceNormal;
     [SerializeField] AudioSource audioSourceParipi;
@@ -37,6 +37,7 @@ public class GameDataManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("GameDataManager Start()");
         audioSourceNormal.clip = normalBGM;
         audioSourceParipi.clip = paripiBGM;
         audioSourceNormal.Play();
@@ -50,20 +51,9 @@ public class GameDataManager : MonoBehaviour
 
     }
 
-    public void SpeedChangeAdd()
-    {
-        gameSpeed += 0.5f;
-        Debug.Log(gameSpeed);
-    }
-
-    public void SpeedChangeOdd()
-    {
-        gameSpeed -= 0.5f;
-        Debug.Log(gameSpeed);
-    }
-
     public void GameStartOnClick()
     {
+        // カウントダウン用
         PanelDisplay(false);
         gameReady = true;
         countDownTime = 3.5f;
@@ -73,7 +63,11 @@ public class GameDataManager : MonoBehaviour
     {
         if (GameOverPanel.activeSelf == true)
         {
+            gameSpeed = constGameSpeed;
+            ScoreManager.instance.playerScore = 0;
+            ScoreManager.instance.KOBAN_score = 0;
             Player.isGameOver = false;
+            //PanelDisplay(true);
             SceneManager.LoadScene("GameScene");
         }
     }
@@ -92,17 +86,12 @@ public class GameDataManager : MonoBehaviour
             audioSourceParipi.Stop();
             gameSpeed = constGameSpeed;
             audioSourceNormal.Play();
-            ScoreManager.KOBAN_score = 0;
         }
-    }
-
-    public void ColorDisplay()
-    {
-
     }
 
     private void PanelDisplay(bool x)
     {
+        Debug.Log("PanelDisplay()実行");
         TitlePanel.SetActive(x);
         HeartPanel.SetActive(!x);
         CountDownPanel.SetActive(!x);
@@ -131,7 +120,7 @@ public class GameDataManager : MonoBehaviour
         // ゲームオーバー画面表示
         if (Player.isGameOver)
         {
-            scoreManager.ResultScore();
+            ScoreManager.instance.ResultScore();
             ScorePanel.SetActive(false);
             GameOverPanel.SetActive(true);
         }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 248e8891ea6ee744181a72f2a2e6376b
+guid: 3dde39e1dcacb0447989152e85003544
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +117,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,379 +128,400 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemies_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 656e386c55c1bc946929dde44298a344
-      internalID: -1837133215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies_1
+      name: Tropics_entities (16 x 16)_0
       rect:
         serializedVersion: 2
         x: 16
-        y: 64
+        y: 112
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ac52d6e488ef4d42a8f28f835a9a0a2
-      internalID: -692700825
+      spriteID: 9872dcc35d23ff04a91c8b3385ebf703
+      internalID: -604811734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_2
+      name: Tropics_entities (16 x 16)_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 112
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22081f6e3125c164ca3706a018e72096
-      internalID: 1123010404
+      spriteID: b68404d5fa2648549913c5192a7e351d
+      internalID: 1449475111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_3
+      name: Tropics_entities (16 x 16)_2
       rect:
         serializedVersion: 2
         x: 48
-        y: 64
+        y: 112
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d996e20ac16a1c148988e85858e8ab73
-      internalID: -487373600
+      spriteID: f312e6ab137e02544b23766bbe08b2b0
+      internalID: -457866307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a4e6db8b53416e4dbf66364a300baf7
-      internalID: 245031235
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c320c685205874e4c8a992050155c0f0
-      internalID: -1890349086
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d65e7e5a1448594094e3d96227e8515
-      internalID: 1542899565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies_7
+      name: Tropics_entities (16 x 16)_3
       rect:
         serializedVersion: 2
         x: 16
-        y: 32
-        width: 16
-        height: 16
+        y: 80
+        width: 48
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fb763a471d51dd4797bbf237e06885e
-      internalID: -1994587485
+      spriteID: 71526bdd2d020d945a02d0f1403f0e89
+      internalID: 1504907268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_8
+      name: Tropics_entities (16 x 16)_4
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55aebc533c47e7c488bb65a81f24c159
-      internalID: 691715083
+      spriteID: 2971214462ea3294882a8bafb3f91400
+      internalID: -569665665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_9
+      name: Tropics_entities (16 x 16)_5
       rect:
         serializedVersion: 2
         x: 48
-        y: 32
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69cdc5e96ecf0b64e80b97cb4e94e4ac
-      internalID: 471022458
+      spriteID: 8ff7260eefa26c64f8e12cb048dc36db
+      internalID: -1071915223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_10
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7147b46aafa96b248940c3f2cfc5682b
-      internalID: -257356483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies_11
+      name: Tropics_entities (16 x 16)_6
       rect:
         serializedVersion: 2
         x: 80
-        y: 32
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 909497d7c33402148969166edf9d605e
-      internalID: 1378530868
+      spriteID: ec2e1e9d08f39524cab2a6947b5e26a6
+      internalID: 228376605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_12
+      name: Tropics_entities (16 x 16)_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 96
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2127eee9a8dee049b13301bed7cebb6
-      internalID: -1907433376
+      spriteID: 1e31cc15ea576a149ab1fae7d1149486
+      internalID: 311472107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_13
+      name: Tropics_entities (16 x 16)_8
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 112
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73afebe2fa20bb643b4544d6dd39b5cf
-      internalID: -1330992730
+      spriteID: 7c94862b37df8194c9f38f88ba2b2dc4
+      internalID: 2056516847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_14
+      name: Tropics_entities (16 x 16)_9
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 144
+        y: 80
         width: 16
-        height: 16
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78b700c238edc5749ae37fb75ef17672
-      internalID: -321081224
+      spriteID: 12ca872bb1c11ec49a8d22d2c66efcc1
+      internalID: -1080128569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_15
+      name: Tropics_entities (16 x 16)_10
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
+        x: 176
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2db7844818c5ce34489d58049b96ea5c
-      internalID: -2100256746
+      spriteID: 28a31625692011041b98c8f605c26251
+      internalID: 1616218009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_16
+      name: Tropics_entities (16 x 16)_11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 192
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b12167c676f69e429abcf7a7a3375a6
-      internalID: -1334833954
+      spriteID: 2dc9e262ddf13d24fa8dfe18e3d0af52
+      internalID: -2100881174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_17
+      name: Tropics_entities (16 x 16)_12
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
+        x: 208
+        y: 80
         width: 16
-        height: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 343ce6547020799448a1e9dfae48e42d
-      internalID: 706817662
+      spriteID: 92dd12d95a318ed448558c06b869cbcc
+      internalID: 1826283759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tropics_entities (16 x 16)_13
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeaa4678b75632a4dba96bc8e44c4fcf
+      internalID: 1250442454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tropics_entities (16 x 16)_14
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26c479adcd1a1042a7b82fbd3aa42e5
+      internalID: -2090132816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tropics_entities (16 x 16)_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04ce20353792d9a479629be1e67f7461
+      internalID: 539247342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tropics_entities (16 x 16)_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2681f6a33e5aff4ba24f140854b3c9b
+      internalID: -1850062691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tropics_entities (16 x 16)_17
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 941a52720198b0d409bc570b8dbc09ca
+      internalID: -1639771291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tropics_entities (16 x 16)_18
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 16
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c110d8fbe20705d4b9ed23d9041e1f03
+      internalID: 1736366605
       vertices: []
       indices: 
       edges: []
@@ -516,24 +537,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemies_0: -1837133215
-      enemies_2: 1123010404
-      enemies_11: 1378530868
-      enemies_17: 706817662
-      enemies_6: 1542899565
-      enemies_7: -1994587485
-      enemies_13: -1330992730
-      enemies_5: -1890349086
-      enemies_9: 471022458
-      enemies_3: -487373600
-      enemies_15: -2100256746
-      enemies_4: 245031235
-      enemies_16: -1334833954
-      enemies_1: -692700825
-      enemies_8: 691715083
-      enemies_12: -1907433376
-      enemies_14: -321081224
-      enemies_10: -257356483
+      Tropics_entities (16 x 16)_6: 228376605
+      Tropics_entities (16 x 16)_10: 1616218009
+      Tropics_entities (16 x 16)_18: 1736366605
+      Tropics_entities (16 x 16)_16: -1850062691
+      Tropics_entities (16 x 16)_1: 1449475111
+      Tropics_entities (16 x 16)_2: -457866307
+      Tropics_entities (16 x 16)_0: -604811734
+      Tropics_entities (16 x 16)_9: -1080128569
+      Tropics_entities (16 x 16)_13: 1250442454
+      Tropics_entities (16 x 16)_17: -1639771291
+      Tropics_entities (16 x 16)_7: 311472107
+      Tropics_entities (16 x 16)_3: 1504907268
+      Tropics_entities (16 x 16)_12: 1826283759
+      Tropics_entities (16 x 16)_8: 2056516847
+      Tropics_entities (16 x 16)_11: -2100881174
+      Tropics_entities (16 x 16)_5: -1071915223
+      Tropics_entities (16 x 16)_14: -2090132816
+      Tropics_entities (16 x 16)_15: 539247342
+      Tropics_entities (16 x 16)_4: -569665665
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

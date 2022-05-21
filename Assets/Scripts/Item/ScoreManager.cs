@@ -5,12 +5,27 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static int playerScore;
-    public static int KOBAN_score;
+    public static ScoreManager instance = null;
+
+    public int playerScore = 0;
+    public int KOBAN_score = 0;
 
     public Text scoreText;
     public Text scoreResultText;
     public Text getKOBANtext;
+
+    private void Awake() {
+
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        } 
+    }
 
     // Start is called before the first frame update
     void Start()
