@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager instance = null;
+    //public static ScoreManager instance = null;
 
     public int playerScore = 0;
     public int KOBAN_score = 0;
@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     public Text scoreResultText;
     public Text getKOBANtext;
 
+/*
     private void Awake() {
 
         if(instance == null)
@@ -26,6 +27,7 @@ public class ScoreManager : MonoBehaviour
             Destroy(this.gameObject);
         } 
     }
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -61,5 +63,17 @@ public class ScoreManager : MonoBehaviour
             KOBAN_score = 5;
         }
         getKOBANtext.text = string.Format("x" + KOBAN_score);
+    }
+
+    public void ResetKoban()
+    {
+        KOBAN_score = 0;
+        getKOBANtext.text = string.Format("x" + KOBAN_score);
+    }
+
+    public void ResetScore()
+    {
+        playerScore = 0;
+        scoreText.text = playerScore.ToString("D5");
     }
 }

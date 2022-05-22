@@ -33,7 +33,6 @@ public class AudioSourceManager : MonoBehaviour
 
     public void ItemSEClip()
     {
-        // AudioSouceManager.instance.PlaySE();
         if(audioSource != null)
         {
             // 指定した音を一回鳴らす
@@ -48,7 +47,6 @@ public class AudioSourceManager : MonoBehaviour
 
      public void KobanSEClip()
     {
-        // AudioSouceManager.instance.PlaySE();
         if(audioSource != null)
         {
             // 指定した音を一回鳴らす
@@ -63,7 +61,6 @@ public class AudioSourceManager : MonoBehaviour
 
     public void DamageSEClipA()
     {
-        // AudioSouceManager.instance.PlaySE();
         if(audioSource != null)
         {
             // 指定した音を一回鳴らす

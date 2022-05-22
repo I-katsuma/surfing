@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviour
 {
-    // シングルトン(シーンをまたいでも破壊されない)
-    public static GameDataManager Instance { get; private set; }
+    //public static GameDataManager Instance { get; private set; }
 
     [SerializeField]
     public static float gameSpeed = 1f;
@@ -20,6 +19,7 @@ public class GameDataManager : MonoBehaviour
     private static float countDownTime;
 
 
+    [SerializeField] ScoreManager scoreManager;
     public GameObject TitlePanel;
     public GameObject HeartPanel;
     public GameObject CountDownPanel;
@@ -28,8 +28,6 @@ public class GameDataManager : MonoBehaviour
 
     public Text TextCountDown;
 
-    // [SerializeField] ScoreManager scoreManager;
-
     [SerializeField] AudioSource audioSourceNormal;
     [SerializeField] AudioSource audioSourceParipi;
     [SerializeField] AudioClip normalBGM;
@@ -37,7 +35,6 @@ public class GameDataManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("GameDataManager Start()");
         audioSourceNormal.clip = normalBGM;
         audioSourceParipi.clip = paripiBGM;
         audioSourceNormal.Play();
@@ -64,9 +61,13 @@ public class GameDataManager : MonoBehaviour
         if (GameOverPanel.activeSelf == true)
         {
             gameSpeed = constGameSpeed;
-            ScoreManager.instance.playerScore = 0;
-            ScoreManager.instance.KOBAN_score = 0;
+            //ScoreManager.instance.playerScore = 0;
+            //ScoreManager.instance.KOBAN_score = 0;
+            scoreManager.ResetKoban();
+            scoreManager.ResetScore();
             Player.isGameOver = false;
+            gameReady = false;
+            gameStart = false;
             //PanelDisplay(true);
             SceneManager.LoadScene("GameScene");
         }
@@ -91,7 +92,6 @@ public class GameDataManager : MonoBehaviour
 
     private void PanelDisplay(bool x)
     {
-        Debug.Log("PanelDisplay()実行");
         TitlePanel.SetActive(x);
         HeartPanel.SetActive(!x);
         CountDownPanel.SetActive(!x);
@@ -120,7 +120,8 @@ public class GameDataManager : MonoBehaviour
         // ゲームオーバー画面表示
         if (Player.isGameOver)
         {
-            ScoreManager.instance.ResultScore();
+            //ScoreManager.instance.ResultScore();
+            scoreManager.ResultScore();
             ScorePanel.SetActive(false);
             GameOverPanel.SetActive(true);
         }

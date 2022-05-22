@@ -5,15 +5,14 @@ using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
-    // private float playerSpeed = 1f;
 
-    // private readonly float superSpeed = 3f;
     GameDataManager gameDataManager;
-    AudioSourceManager audioSourceManager;
+
+    ScoreManager scoreManager;
 
     readonly float flashInterval = 0.08f; // 点滅間隔 0.08
     readonly int loopCount = 20; // 点滅させるときのループカウント 20
-    [SerializeField] int paripiTimeCount = 35; // パリピタイムのカウント 
+    [SerializeField] int paripiTimeCount = 36; // パリピタイムのカウント 
     [SerializeField] private SpriteRenderer spCat; // 点滅させるためのSpriteRenderer
     [SerializeField] private SpriteRenderer spDog;
 
@@ -38,13 +37,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int playerHp;
     [SerializeField] HeartManager heartManager;
-    public static GameObject ParipiPanel;
+
     [SerializeField] Image ParipiImage;
 
-    AudioSource audioSource;
-    [SerializeField] AudioClip itemSE;
-    [SerializeField] AudioClip kobanSE;
-    [SerializeField] AudioClip damageSE;
 
     private Vector2 playerPos;
     private readonly float playerPosXClamp = 2.2f;
@@ -52,35 +47,25 @@ public class Player : MonoBehaviour
 
     public float paripiInterval = 1f;
 
-    public float DurationSeconds = 0.1f;
+    public float DurationSeconds = 1f;
 
     public Ease EaseType;
 
     private void Start()
     {
-        // ParipiPanel.SetActive(true);
-        Debug.Log("Player Start()");
+        //ParipiPanel.SetActive(true);
 
+        ParipiImage.color = new Color32(255, 255, 255, 0);
         gameDataManager = GameObject.Find("GameDataManager").GetComponent<GameDataManager>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
-        if(ParipiPanel)
-        {
-            // リセット用の仕掛け
-            ParipiPanel.SetActive(true);
-        }
-        else
-        {
-            ParipiPanel = GameObject.Find("ParipiPanel").gameObject;
-            ParipiImage = GameObject.Find("ParipiPanel").GetComponent<Image>();
-        }
-
-        audioSource = GetComponent<AudioSource>();
-
+        /*
         if (ParipiPanel && ParipiImage)
         {
             ParipiImage.color = new Color32(255, 255, 255, 200);
             ParipiPanel.SetActive(false);
         }
+        */
 
         SurfDog.SetActive(true);
 
@@ -109,7 +94,7 @@ public class Player : MonoBehaviour
 
         if (state == STATE.MUTEKI) 
         {
-            //TODO 無敵中は小判が増えないようにしたい
+            //TODO:無敵中は小判が増えないようにしたい
         }
 
         // 動くべき方向に変数に格納
@@ -174,8 +159,8 @@ public class Player : MonoBehaviour
         {
             if (other.gameObject.tag == "PowerItem")
             {
-                audioSource.PlayOneShot(kobanSE);
-                if (ScoreManager.instance.KOBAN_score < 5)
+                AudioSourceManager.instance.KobanSEClip();
+                if (scoreManager.KOBAN_score < 5)
                 {
                     GameDataManager.gameSpeed += 0.2f;
                 }
@@ -187,7 +172,7 @@ public class Player : MonoBehaviour
             }
             else if (other.gameObject.tag == "ScoreItem")
             {
-                audioSource.PlayOneShot(itemSE);
+                AudioSourceManager.instance.ItemSEClip();
             }
             else if (other.gameObject.tag == "Enemy")
             {
@@ -198,7 +183,6 @@ public class Player : MonoBehaviour
                 }
                 else if (playerHp > 0)
                 {
-
                     state = STATE.DAMAGED;
                     PlayerDamage(1);
                     StartCoroutine(_hit());
@@ -242,15 +226,18 @@ public class Player : MonoBehaviour
     IEnumerator _paripi()
     {
         Debug.Log("ぱりぴモード！");
-        ScoreManager.instance.KOBAN_score = 0;
+        scoreManager.ResetKoban();
         state = STATE.MUTEKI;
         ChangePlayerSetMode(true);
 
+        ParipiImage.color = new Color32(255, 255, 255, 200);
+
+        /*
         Sequence seq = DOTween.Sequence();
         seq.Append(ParipiImage.DOFade(0.0f, DurationSeconds).SetEase(this.EaseType));
         seq.SetLoops(-1, LoopType.Yoyo);  
-        
-        //Sequence seq = DOTween.Sequence();
+        */
+
         for (int i = 0; i < paripiTimeCount; i++)
         {
             Debug.Log(i);
@@ -260,22 +247,14 @@ public class Player : MonoBehaviour
             ParipiPanel.SetActive(false);
             yield return new WaitForSeconds(alphaNum);
             */
-
-            //ParipiImage.color = Color.HSVToRGB(Time.deltaTime % 1f, 1f, 1f);
-
-
-            //ParipiImage.color = Color.Lerp(Color.red, Color.blue, Mathf.PingPong(Time.time, 1));
-            /*
-            seq.Append(ParipiImage.DOColor(Color.red, 2f)).AppendInterval(0.25f)
-            .Append(ParipiImage.DOColor(Color.blue, 2f)).AppendInterval(0.25f)
-            .Append(ParipiImage.DOColor(Color.green, 2f)).AppendInterval(0.25f)
-            .Append(ParipiImage.DOColor(Color.white, 2f)).AppendInterval(0.25f);
-            */
-
+            ParipiImage.DOFade(0.0f, DurationSeconds).SetEase(this.EaseType).SetLoops(1, LoopType.Yoyo);
+            ParipiImage.color = Color.HSVToRGB(Time.time % 1f, 1f, 1f);
             yield return new WaitForSeconds(paripiInterval);
         }
         
         state = STATE.NORMAL;
+        
+        ParipiImage.color = new Color32(255, 255, 255, 0);
         ChangePlayerSetMode(false);
 
     }
@@ -286,7 +265,6 @@ public class Player : MonoBehaviour
         gameDataManager.ParipiMode(x);
         SurfDog.SetActive(!x);
         ParipiDog.SetActive(x);
-        ParipiPanel.SetActive(x);
     }
 
 }

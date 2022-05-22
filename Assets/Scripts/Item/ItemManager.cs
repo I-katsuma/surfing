@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    ScoreManager scoreManager;
+    ScoreManager scoreManager = null;
 
     private void Start()
     {
-        scoreManager = GameObject.Find("GameDataManager").GetComponent<ScoreManager>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
     void Update()
@@ -32,6 +32,8 @@ public class ItemManager : MonoBehaviour
         {
             if (other.CompareTag("Player") == true)
             {
+                //Debug.Log("小判判定");
+                //ScoreManager.instance.AddScore(100);
                 scoreManager.AddScore(100);
                 Destroy(this.gameObject);
             }
@@ -40,8 +42,11 @@ public class ItemManager : MonoBehaviour
         {
             if(other.CompareTag("Player") == true)
             {
-                scoreManager.AddScore(500);
+                Debug.Log("アイテム判定");
+                //ScoreManager.instance.AddScore(500);
+                //ScoreManager.instance.AddKoban();
                 scoreManager.AddKoban();
+                scoreManager.AddScore(500);
                 Destroy(this.gameObject);
             }
         }

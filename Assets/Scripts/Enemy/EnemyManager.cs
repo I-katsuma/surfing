@@ -4,21 +4,19 @@ public class EnemyManager : MonoBehaviour
 {
     float offset;
     
-    ScoreManager scoreManager;
     Player player;
-    
+
+    ScoreManager scoreManager;
+
     public int myScore;
 
     [SerializeField] CircleCollider2D cc2D; // 自身のコライダー
 
-    AudioSource audioSource;
-    public AudioClip damageSE;
-
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         player = GameObject.Find("Player").GetComponent<Player>();
-        scoreManager = GameObject.Find("GameDataManager").GetComponent<ScoreManager>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+
         // 波打つ動き用
         offset = Random.Range(0, 2f * Mathf.PI);
     }
@@ -44,13 +42,15 @@ public class EnemyManager : MonoBehaviour
         {
             if(player.state == Player.STATE.NORMAL) {
                 this.cc2D.enabled = false;
-                audioSource.PlayOneShot(damageSE);
-                scoreManager.AddScore(myScore);
+                AudioSourceManager.instance.DamageSEClipA();
+                //ScoreManager.instance.AddScore(300);
+                scoreManager.AddScore(300);
             }
             else if(player.state == Player.STATE.MUTEKI)
             {
-                scoreManager.AddScore(myScore);
-                audioSource.PlayOneShot(damageSE);
+                AudioSourceManager.instance.DamageSEClipA();
+                //ScoreManager.instance.AddScore(300);
+                scoreManager.AddScore(300);
                 Destroy(this.gameObject);
             }
         }
