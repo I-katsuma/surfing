@@ -42,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 3546933863
+    locked: 0
+  - name: Shadow
+    uniqueID: 1875697131
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Mobs
+    uniqueID: 3075089881
     locked: 0

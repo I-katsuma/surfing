@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum name {
+public enum name
+{
     Bard,
     Ballkun,
     Yadokari,
@@ -13,28 +14,57 @@ public abstract class Enemy : MonoBehaviour
 {
     public int myScore;
 
+    [HideInInspector] public float Ymove = 0, Zmove = 0;
     public AudioClip damageSE;
 
-    [SerializeField] CircleCollider2D cc2D;
+    [SerializeField] public Collider2D coll2D;
 
+    [HideInInspector] public Player player;
+    [HideInInspector] public ScoreManager scoreManager;
+    [HideInInspector] public AudioSourceManager audioSourceManager;
 
-    Player player;
-    ScoreManager scoreManager;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void EnemyMoveAction()
     {
-        
+        this.transform.position -= new Vector3(
+            GameDataManager.gameSpeed * Time.deltaTime, Ymove, Zmove
+        );
+        if (this.transform.position.x < -10)
+        {
+            DestroyAction();
+        }
     }
+
+    public virtual void DestroyAction()
+    {
+        Destroy(this.gameObject);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Debug.Log(this.gameObject + " が " + other.gameObject + " とぶつかったよ");
+        if (other.CompareTag("Player") == true)
+        {
+            if (player.state == Player.STATE.NORMAL)
+            {
+                this.coll2D.enabled = false;
+                audioSource.PlayOneShot(damageSE);
+                scoreManager.AddScore(myScore);
+            }
+            else if (player.state == Player.STATE.MUTEKI)
+            {
+                audioSource.PlayOneShot(damageSE);
+                scoreManager.AddScore(myScore);
+                DestroyAction();
+            }
+        }
+    }
+
 }

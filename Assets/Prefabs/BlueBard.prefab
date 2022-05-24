@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4203308108108294256}
   - component: {fileID: 2302134482424095897}
   m_Layer: 0
-  m_Name: Bard
+  m_Name: BlueBard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

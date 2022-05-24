@@ -11,6 +11,7 @@ public class GameDataManager : MonoBehaviour
 
     [SerializeField]
     public static float gameSpeed = 1f;
+    //private static float gameSpeed { get; set; } 
     private float constGameSpeed = 1f;
 
     private bool gameReady;
@@ -61,14 +62,11 @@ public class GameDataManager : MonoBehaviour
         if (GameOverPanel.activeSelf == true)
         {
             gameSpeed = constGameSpeed;
-            //ScoreManager.instance.playerScore = 0;
-            //ScoreManager.instance.KOBAN_score = 0;
             scoreManager.ResetKoban();
             scoreManager.ResetScore();
             Player.isGameOver = false;
             gameReady = false;
             gameStart = false;
-            //PanelDisplay(true);
             SceneManager.LoadScene("GameScene");
         }
     }

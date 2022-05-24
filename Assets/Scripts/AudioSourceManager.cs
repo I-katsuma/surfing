@@ -10,8 +10,8 @@ public class AudioSourceManager : MonoBehaviour
 
     [SerializeField] private AudioClip ItemSE;
     [SerializeField] private AudioClip KobanSE;
-    [SerializeField] private AudioClip damegeSE;
-
+    [SerializeField] private AudioClip damegeSE1;
+    [SerializeField] private AudioClip damegeSE2;
     private void Awake()
     {
 
@@ -65,7 +65,21 @@ public class AudioSourceManager : MonoBehaviour
         {
             // 指定した音を一回鳴らす
             // 既になっている音に重複する
-            audioSource.PlayOneShot(damegeSE);
+            audioSource.PlayOneShot(damegeSE1);
+        }
+        else
+        {
+            Debug.Log("オーディオソースがありません");
+        }
+    }
+
+    public void DamageSEClipB()
+    {
+        if(audioSource != null)
+        {
+            // 指定した音を一回鳴らす
+            // 既になっている音に重複する
+            audioSource.PlayOneShot(damegeSE2);
         }
         else
         {
