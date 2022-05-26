@@ -10,8 +10,8 @@ public class EnemyGenerator : MonoBehaviour
 
     void Start()
     {
-       // InvokeRepeating("BardSpawn", 1.5f, 8f / GameDataManager.gameSpeed);
-        InvokeRepeating("GhostChanSpawn", 1.5f, 8f / GameDataManager.gameSpeed) ;
+       InvokeRepeating("BardSpawn", 1.5f, 8f / GameDataManager.gameSpeed);
+       // InvokeRepeating("GhostChanSpawn", 1.5f, 8f / GameDataManager.gameSpeed) ;
     }
 
     void BardSpawn()

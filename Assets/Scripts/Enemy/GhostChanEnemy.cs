@@ -5,11 +5,12 @@ using DG.Tweening;
 
 public class GhostChanEnemy : Enemy
 {
-    private float offset;
+    // private float offset;
     
     private Tweener _shakeTweener;
     private Vector3 _initPosition;
 
+    // DoTween用
     public float DurationSeconds = 1f;
     public Ease EaseType;
 
@@ -17,7 +18,7 @@ public class GhostChanEnemy : Enemy
 
     void Start()
     {
-        offset = Random.Range(0, 2f * Mathf.PI);
+        //offset = Random.Range(0, 2f * Mathf.PI);
         spriteRenderer.DOFade(0.0f, this.DurationSeconds).SetEase(this.EaseType).SetLoops(-1, LoopType.Yoyo);        
         
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -28,7 +29,6 @@ public class GhostChanEnemy : Enemy
     {
         if (GameDataManager.gameStart)
         {
-            //Move();
             EnemyMoveAction();
 
         }
