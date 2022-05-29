@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     ScoreManager scoreManager = null;
+    public int ItemScore = 100;
 
     private void Start()
     {
@@ -13,7 +14,7 @@ public class ItemManager : MonoBehaviour
 
     void Update()
     {
-        if (GameDataManager.gameStart)
+        if (GameDataManager.gameState == GameDataManager.GAMESTAGESTATE.GAMENOW)
         {
             // 移動
             transform.position -= new Vector3(
@@ -32,9 +33,7 @@ public class ItemManager : MonoBehaviour
         {
             if (other.CompareTag("Player") == true)
             {
-                //Debug.Log("小判判定");
-                //ScoreManager.instance.AddScore(100);
-                scoreManager.AddScore(100);
+                scoreManager.AddScore(ItemScore);
                 Destroy(this.gameObject);
             }
         }
@@ -43,8 +42,6 @@ public class ItemManager : MonoBehaviour
             if(other.CompareTag("Player") == true)
             {
                 Debug.Log("アイテム判定");
-                //ScoreManager.instance.AddScore(500);
-                //ScoreManager.instance.AddKoban();
                 scoreManager.AddKoban();
                 scoreManager.AddScore(500);
                 Destroy(this.gameObject);

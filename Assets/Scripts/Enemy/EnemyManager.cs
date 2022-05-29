@@ -23,6 +23,7 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
+        /*
         if (GameDataManager.gameStart)
         {
             // 移動
@@ -33,6 +34,7 @@ public class EnemyManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D other) 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using NCMB;
 
 public class GameDataManager : MonoBehaviour
 {
@@ -11,16 +12,16 @@ public class GameDataManager : MonoBehaviour
 
     [SerializeField]
     public static float gameSpeed = 1f;
-    //private static float gameSpeed { get; set; } 
+
     private float constGameSpeed = 1f;
 
-    private bool gameReady;
-    public static bool gameStart;
+    //private bool gameReady;
+    //public static bool gameStart;
 
     private static float countDownTime;
 
-
-    [SerializeField] ScoreManager scoreManager;
+    [SerializeField]
+    ScoreManager scoreManager;
     public GameObject TitlePanel;
     public GameObject HeartPanel;
     public GameObject CountDownPanel;
@@ -29,57 +30,84 @@ public class GameDataManager : MonoBehaviour
 
     public Text TextCountDown;
 
-    [SerializeField] AudioSource audioSourceNormal;
-    [SerializeField] AudioSource audioSourceParipi;
-    [SerializeField] AudioClip normalBGM;
-    [SerializeField] AudioClip paripiBGM;
+    [SerializeField]
+    AudioSource audioSourceNormal;
+
+    [SerializeField]
+    AudioSource audioSourceParipi;
+
+    [SerializeField]
+    AudioClip normalBGM;
+
+    [SerializeField]
+    AudioClip paripiBGM;
+
+    [SerializeField] Text GameStateText;
+
+    public enum GAMESTAGESTATE
+    {
+        GAMELEADY,
+        GAMENOW,
+        GAMEPOUSE,
+        GAMEOVER,
+        GAMEWAIT
+    }
+    public static GAMESTAGESTATE gameState;
+
 
     private void Start()
     {
+        gameState = GAMESTAGESTATE.GAMEWAIT;
+
         audioSourceNormal.clip = normalBGM;
         audioSourceParipi.clip = paripiBGM;
         audioSourceNormal.Play();
 
         gameSpeed = constGameSpeed;
-        gameReady = false;
-        gameStart = false;
+        //gameReady = false;
+        //gameStart = false;
 
         PanelDisplay(true);
         GameOverPanel.SetActive(false);
-
     }
 
-    public void GameStartOnClick()
+
+    public void GameStartOnClick() // カウントダウン開始
     {
+        gameState = GAMESTAGESTATE.GAMELEADY;
+
         // カウントダウン用
         PanelDisplay(false);
-        gameReady = true;
+        //gameReady = true;
         countDownTime = 3.5f;
     }
 
     public void RetryButtonOnclick() // リトライ
     {
-        if (GameOverPanel.activeSelf == true)
+        // if (GameOverPanel.activeSelf == true)
+        if(gameState == GAMESTAGESTATE.GAMEOVER)
         {
             gameSpeed = constGameSpeed;
             scoreManager.ResetKoban();
             scoreManager.ResetScore();
-            Player.isGameOver = false;
-            gameReady = false;
-            gameStart = false;
+            //Player.isGameOver = false;
+            //gameReady = false;
+            // gameStart = false;
+            gameState = GAMESTAGESTATE.GAMEWAIT;
             SceneManager.LoadScene("GameScene");
         }
     }
 
     public void ParipiMode(bool x)
     {
-        if(x == true){
+        if (x == true)
+        {
             // PARIPI MODE!
             audioSourceNormal.Stop();
             audioSourceParipi.Play();
             gameSpeed = 2.5f;
         }
-        else if(x == false)
+        else if (x == false)
         {
             // 初期化
             audioSourceParipi.Stop();
@@ -96,34 +124,40 @@ public class GameDataManager : MonoBehaviour
         ScorePanel.SetActive(!x);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (gameReady)
+        GameStateText.text = "GameStageState : " + gameState;  
+
+        //if (gameReady)
+        if(gameState == GAMESTAGESTATE.GAMELEADY)
         {
-            // カウントダウン
+            // カウントダウン実施
             countDownTime -= Time.deltaTime;
             TextCountDown.text = countDownTime.ToString("0");
             if (countDownTime <= 0.0f)
             {
                 countDownTime = 0.0f;
 
-                gameStart = true;
+                // gameStart = true;
+                gameState = GAMESTAGESTATE.GAMENOW; 
                 Debug.Log("GAME START!");
-
+                Debug.Log(gameState);                
                 CountDownPanel.SetActive(false);
-                gameReady = false;
+                //gameReady = false;
             }
-        }
-
-        // ゲームオーバー画面表示
-        if (Player.isGameOver)
-        {
-            //ScoreManager.instance.ResultScore();
-            scoreManager.ResultScore();
-            ScorePanel.SetActive(false);
-            GameOverPanel.SetActive(true);
         }
 
     }
 
+    public void GameOver()
+    {
+        gameState = GAMESTAGESTATE.GAMEOVER;
+        int score = scoreManager.resultScoreApper();
+
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
+        
+        scoreManager.ResultScore();
+        ScorePanel.SetActive(false);
+        GameOverPanel.SetActive(true);
+    }
 }

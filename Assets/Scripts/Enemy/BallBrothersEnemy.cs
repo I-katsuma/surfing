@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class BallBrothersEnemy : Enemy
 {
-    // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
-        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        InitSet();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (GameDataManager.gameStart)
+
+        if (GameDataManager.gameState == GameDataManager.GAMESTAGESTATE.GAMENOW)
         {
             EnemyMoveAction();
         }

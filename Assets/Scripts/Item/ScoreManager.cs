@@ -44,6 +44,12 @@ public class ScoreManager : MonoBehaviour
         scoreResultText.text = string.Format("SCORE : " + playerScore);
     }
 
+    public int resultScoreApper()
+    {
+        int resultScore = playerScore;
+        return resultScore;
+    }
+
     // スコア加算
     public void AddScore(int score)
     {

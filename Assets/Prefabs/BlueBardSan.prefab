@@ -72,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: -1219877415
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -713363952, guid: ea15b48d7fa569c4395e433b9a5885af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 7934270267389646378}
   - component: {fileID: 7934270267389646381}
   - component: {fileID: 7934270267389646380}
+  - component: {fileID: 1843255872}
   m_Layer: 0
   m_Name: BlueBardSan
   m_TagString: Enemy
@@ -274,6 +275,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1843255872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934270267389646383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972a544bade09e141b089543e8217216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myScore: 300
+  speedAid: 1
+  Xmove: 0
+  Ymove: 0
+  Zmove: 0
+  damageSE: {fileID: 8300000, guid: 8acb0e67aacda78488608cc2acd56472, type: 3}
+  coll2D: {fileID: 6073410524060807243}
+  player: {fileID: 0}
+  scoreManager: {fileID: 0}
+  audioSourceManager: {fileID: 0}
+  audioSource: {fileID: 7934270267389646380}
+  spriteObj: {fileID: 5464841225803999776}
+  _durationSecounds: 0.25
+  _moveY: 0.4
+  easeType: 3
 --- !u!1 &7934270268085412603
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,9 +372,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: 1875697131
+  m_SortingLayer: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.21766344, g: 0.45002732, b: 0.6509434, a: 1}
   m_FlipX: 0

@@ -10,30 +10,54 @@ public enum name
     GhostChan,
     BlueFish
 }
+
 public abstract class Enemy : MonoBehaviour
 {
     public int myScore;
 
-    [HideInInspector] public float Ymove = 0, Zmove = 0;
+    public float speedAid = 1;
+
+    [HideInInspector]
+    public float Xmove = 0,
+     Ymove = 0,
+     Zmove = 0;
     public AudioClip damageSE;
 
-    [SerializeField] public Collider2D coll2D;
+    [SerializeField]
+    public Collider2D coll2D;
 
-    [HideInInspector] public Player player;
-    [HideInInspector] public ScoreManager scoreManager;
-    [HideInInspector] public AudioSourceManager audioSourceManager;
+    [HideInInspector]
+    public Player player;
+
+    [HideInInspector]
+    public ScoreManager scoreManager;
+
+    [HideInInspector]
+    public AudioSourceManager audioSourceManager;
 
     public AudioSource audioSource;
 
-    void Start()
+    private void Start() {
+        
+
+    }
+
+    public void InitSet()
     {
+        Xmove = GameDataManager.gameSpeed * Time.deltaTime;
+        //Ymove = this.transform.position.y;
+        //Zmove = this.transform.position.z;
+        player = GameObject.Find("Player").GetComponent<Player>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
 
-    public void EnemyMoveAction()
+    public virtual void EnemyMoveAction()
     {
         this.transform.position -= new Vector3(
-            GameDataManager.gameSpeed * Time.deltaTime, Ymove, Zmove
+            Xmove,
+            Ymove,
+            Zmove
         );
         if (this.transform.position.x < -10)
         {
@@ -45,7 +69,6 @@ public abstract class Enemy : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -66,5 +89,4 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
-
 }

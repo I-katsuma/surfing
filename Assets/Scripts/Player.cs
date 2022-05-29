@@ -31,7 +31,8 @@ public class Player : MonoBehaviour
         DAMAGED,
         MUTEKI,
         PARIPI,
-        GAMEOVER
+        GAMEOVER,
+        WAIT
     }
     public STATE state;
 
@@ -76,12 +77,18 @@ public class Player : MonoBehaviour
         heartManager.SetLifeGauge(playerHp);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (state == STATE.GAMEOVER) // ゲームオーバーになったら
+        if(state == STATE.WAIT)
+        {
+            return;
+        }
+        else if (state == STATE.GAMEOVER) // ゲームオーバーになったら
         {
             isGameOver = true;
+            gameDataManager.GameOver();
             GameDataManager.gameSpeed = 0;
+            state = STATE.WAIT;
             return;
         }
 
@@ -152,7 +159,11 @@ public class Player : MonoBehaviour
             if (other.gameObject.tag == "Enemy") // 敵
             {
                 //TODO: 後でふっとばすかんじの効果音に変更予定
-                AudioSourceManager.instance.DamageSEClipA();
+                //AudioSourceManager.instance.DamageSEClipA();
+            }
+            if(other.gameObject.tag == "mobObject")
+            {
+
             }
         }
         else if (state == STATE.NORMAL)
@@ -187,6 +198,10 @@ public class Player : MonoBehaviour
                     PlayerDamage(1);
                     StartCoroutine(_hit());
                 }
+            }
+            else
+            {
+                
             }
         }
     }
