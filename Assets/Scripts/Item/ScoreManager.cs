@@ -14,7 +14,9 @@ public class ScoreManager : MonoBehaviour
     public Text scoreResultText;
     public Text getKOBANtext;
 
-/*
+    [SerializeField] Player player;
+    [SerializeField] GameDataManager gameDataManager;              
+    /*
     private void Awake() {
 
         if(instance == null)
@@ -32,6 +34,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         playerScore = 0;
         KOBAN_score = 0;
 
@@ -62,7 +65,13 @@ public class ScoreManager : MonoBehaviour
     {
         if(KOBAN_score < 5)
         {
-            KOBAN_score += 1;   
+            if(KOBAN_score == 3)
+            {
+                // プレイヤーをスタンバイモードへ
+                player.state = Player.STATE.SHOWTIMEREADY;
+                gameDataManager.ShowTimeReadyMethod(true);
+            }
+            KOBAN_score++; 
         }
         else
         {

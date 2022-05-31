@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1219877415
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1861075046, guid: e6e3042157fefa547b5575fabcbbe55a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -193,7 +193,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1875697131
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.21766344, g: 0.45002732, b: 0.6509434, a: 1}
@@ -255,6 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myScore: 300
+  speedAid: 1.5
+  Xmove: 0
   Ymove: 0
   Zmove: 0
   damageSE: {fileID: 8300000, guid: 8acb0e67aacda78488608cc2acd56472, type: 3}
@@ -263,9 +265,11 @@ MonoBehaviour:
   scoreManager: {fileID: 0}
   audioSourceManager: {fileID: 0}
   audioSource: {fileID: 2099421211412719853}
+  PlayerPosition: {x: 0, y: 0, z: 0}
   DurationSeconds: 1
   EaseType: 0
   spriteRenderer: {fileID: 2099421210062063469}
+  rd2d: {fileID: 2099421211412719852}
 --- !u!50 &2099421211412719852
 Rigidbody2D:
   serializedVersion: 4

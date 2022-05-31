@@ -22,13 +22,16 @@ public class Player : MonoBehaviour
     public GameObject SurfDog;
     public GameObject ParipiDog;
 
-    public static bool isGameOver;
+    public GameObject SpeedUpPanel;
+
+    //public static bool isGameOver;
 
     [HideInInspector]
     public enum STATE
     {
         NORMAL,
         DAMAGED,
+        SHOWTIMEREADY,
         MUTEKI,
         PARIPI,
         GAMEOVER,
@@ -54,23 +57,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //ParipiPanel.SetActive(true);
 
         ParipiImage.color = new Color32(255, 255, 255, 0);
         gameDataManager = GameObject.Find("GameDataManager").GetComponent<GameDataManager>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
-        /*
-        if (ParipiPanel && ParipiImage)
-        {
-            ParipiImage.color = new Color32(255, 255, 255, 200);
-            ParipiPanel.SetActive(false);
-        }
-        */
-
         SurfDog.SetActive(true);
 
-        isGameOver = false;
         state = STATE.NORMAL;
 
         playerHp = 3;
@@ -85,16 +78,19 @@ public class Player : MonoBehaviour
         }
         else if (state == STATE.GAMEOVER) // ゲームオーバーになったら
         {
-            isGameOver = true;
             gameDataManager.GameOver();
             GameDataManager.gameSpeed = 0;
             state = STATE.WAIT;
             return;
         }
 
+        if(state == STATE.SHOWTIMEREADY) // 小判4枚集めたら照明を落とす
+        {
+            //gameDataManager.ShowTimeReadyMethod(true); // スタンバイモード
+        }
         if (state == STATE.PARIPI) // パリピモードに入ったら
         {
-            //ScoreManager.KOBAN_score = 0; // 小判スコアリセット
+            gameDataManager.ShowTimeReadyMethod(false);
             StartCoroutine(_paripi());
             return;
         }
@@ -115,7 +111,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void MovingRestrictions()
+    private void MovingRestrictions() // 移動範囲
     {
         this.playerPos = transform.position;
 
@@ -158,22 +154,32 @@ public class Player : MonoBehaviour
             }
             if (other.gameObject.tag == "Enemy") // 敵
             {
-                //TODO: 後でふっとばすかんじの効果音に変更予定
-                //AudioSourceManager.instance.DamageSEClipA();
+                //TODO: ぶつかった際にエフェクト
+                //TODO: てきふっとび演出
             }
             if(other.gameObject.tag == "mobObject")
             {
-
+                //TODO: LuckyFrog取得時にSTAGEアップを知らせるようなエフェクト？
+            }
+            if(other.gameObject.tag == "RareItem")
+            {
+                AudioSourceManager.instance.RareItemSE_Clicp();
             }
         }
-        else if (state == STATE.NORMAL)
+        else if (state == STATE.NORMAL || state == STATE.SHOWTIMEREADY)
         {
-            if (other.gameObject.tag == "PowerItem")
+            if(other.gameObject.tag == "RareItem")
+            {
+                AudioSourceManager.instance.RareItemSE_Clicp();
+            }
+            else if (other.gameObject.tag == "PowerItem")
             {
                 AudioSourceManager.instance.KobanSEClip();
                 if (scoreManager.KOBAN_score < 5)
                 {
+                    //TODO: SPEED UP!オンオフ
                     GameDataManager.gameSpeed += 0.2f;
+                    SpeedUpPanel.SetActive(true);
                 }
                 else
                 {
@@ -198,6 +204,10 @@ public class Player : MonoBehaviour
                     PlayerDamage(1);
                     StartCoroutine(_hit());
                 }
+            }
+            else if(other.gameObject.tag == "mobObject")
+            {
+                //TODO: LuckyFrog取得時にSTAGEアップを知らせるようなエフェクト？を追加
             }
             else
             {
@@ -247,21 +257,8 @@ public class Player : MonoBehaviour
 
         ParipiImage.color = new Color32(255, 255, 255, 200);
 
-        /*
-        Sequence seq = DOTween.Sequence();
-        seq.Append(ParipiImage.DOFade(0.0f, DurationSeconds).SetEase(this.EaseType));
-        seq.SetLoops(-1, LoopType.Yoyo);  
-        */
-
         for (int i = 0; i < paripiTimeCount; i++)
         {
-            Debug.Log(i);
-            /* 
-            ParipiPanel.SetActive(true);
-            //yield return new WaitForSeconds(alphaNum);
-            ParipiPanel.SetActive(false);
-            yield return new WaitForSeconds(alphaNum);
-            */
             ParipiImage.DOFade(0.0f, DurationSeconds).SetEase(this.EaseType).SetLoops(1, LoopType.Yoyo);
             ParipiImage.color = Color.HSVToRGB(Time.time % 1f, 1f, 1f);
             yield return new WaitForSeconds(paripiInterval);

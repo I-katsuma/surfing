@@ -44,7 +44,7 @@ public class EnemyGenerator : MonoBehaviour
 
         InvokeRepeating("RandomNum", 10f, 10f);
         InvokeRepeating("MobSpawnEnterA", startNum, spawnNum / GameDataManager.gameSpeed);
-        InvokeRepeating("MobSpawnEnterB", 120f, 120f); // LuckyFrog
+        InvokeRepeating("MobSpawnEnterB", 130f, 120f); // LuckyFrog
     }
 
     private void FixedUpdate()
@@ -65,26 +65,27 @@ public class EnemyGenerator : MonoBehaviour
             if (nowStage == NOWSTAGE.STAGE5)
             {
                 Spawn(BardPrefab, -3f, 1f);
-                Spawn(BlueFishMan, -4.5f, 0.5f);
+                //Spawn(BlueFishMan, -4.5f, 0.5f);
                 Spawn(BallBrathersPlafas, -4f, 1f);
             }
             else if (nowStage == NOWSTAGE.STAGE4)
             {
-                Spawn(BlueFishMan, -4.5f, 0.5f);
+                //Spawn(BlueFishMan, -4.5f, 0.5f);
                 Spawn(BallBrathersPlafas, -4f, 1f);
             }
             else if (nowStage == NOWSTAGE.STAGE3)
             {
-                Spawn(GhostChanPrefab, -3f, 1f);
+                //Spawn(GhostChanPrefab, -3f, 1f);
                 Spawn(BlueFishMan, -4.5f, 0.5f);
             }
             else if (nowStage == NOWSTAGE.STAGE2)
             {
                 Spawn(GhostChanPrefab, -3f, 1f);
-                Spawn(BardPrefab, -3f, 1f);
+                //Spawn(BardPrefab, -3f, 1f);
             }
             else // stage1
             {
+                //Spawn(GhostChanPrefab, -3f, 1f);
                 Spawn(BardPrefab, -3f, 1f);
             }
         }

@@ -54,11 +54,15 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void EnemyMoveAction()
     {
+        
         this.transform.position -= new Vector3(
             Xmove,
             Ymove,
             Zmove
         );
+        
+        //this.transform.position.x -= Xmove;
+
         if (this.transform.position.x < -10)
         {
             DestroyAction();

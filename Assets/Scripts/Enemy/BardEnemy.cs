@@ -38,7 +38,9 @@ public class BardEnemy : Enemy
                 .DOMoveY(_endY, duration: _durationSecounds)
                 .SetEase(this.easeType)
                 .SetLoops(-1, LoopType.Yoyo)
-                .Play();
+                .Play()
+                .SetLink(this.gameObject);
+
         }
     }
 
@@ -60,7 +62,7 @@ public class BardEnemy : Enemy
 
         if(GameDataManager.gameState == GameDataManager.GAMESTAGESTATE.GAMEOVER)
         {
-            _tweener.Kill();
+            //_tweener.Kill();
         }
 
     }
@@ -69,8 +71,8 @@ public class BardEnemy : Enemy
     {
         if(spriteObj != null)
         {
-            Debug.Log("DOTWEENをKIll");
-            _tweener.Kill();
+            //Debug.Log("DOTWEENをKIll");
+            //_tweener.Kill();
         }
 
         base.DestroyAction();

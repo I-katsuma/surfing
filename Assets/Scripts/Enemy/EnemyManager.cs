@@ -44,13 +44,13 @@ public class EnemyManager : MonoBehaviour
         {
             if(player.state == Player.STATE.NORMAL) {
                 this.cc2D.enabled = false;
-                AudioSourceManager.instance.DamageSEClipA();
+                //AudioSourceManager.instance.DamageSEClipA();
                 //ScoreManager.instance.AddScore(300);
                 scoreManager.AddScore(300);
             }
             else if(player.state == Player.STATE.MUTEKI)
             {
-                AudioSourceManager.instance.DamageSEClipA();
+                //AudioSourceManager.instance.DamageSEClipA();
                 //ScoreManager.instance.AddScore(300);
                 scoreManager.AddScore(300);
                 Destroy(this.gameObject);

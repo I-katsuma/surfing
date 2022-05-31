@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -23,10 +23,12 @@ public class GameDataManager : MonoBehaviour
     [SerializeField]
     ScoreManager scoreManager;
     public GameObject TitlePanel;
+    public GameObject ShowTimeReadyPanel;
     public GameObject HeartPanel;
     public GameObject CountDownPanel;
     public GameObject ScorePanel;
     public GameObject GameOverPanel;
+    public GameObject PartyText;
 
     public Text TextCountDown;
 
@@ -98,12 +100,42 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
+    public void ShowTimeReadyMethod(bool x)
+    {
+        
+        
+        if(x == true)
+        {
+            audioSourceNormal.Stop(); // 一旦BGMを止める
+            StartCoroutine("ShowTimeReadyAction");
+        }
+        else
+        {   
+            ShowTimeReadyPanel.SetActive(x);
+            PartyText.SetActive(x);
+            return;
+        }
+    }
+
+    private IEnumerator ShowTimeReadyAction()
+    {
+        Debug.Log("ショータイムのはじまり...");
+        yield return new WaitForSeconds(0.75f);
+
+        AudioSourceManager.instance.StandbySE_Clip();
+        yield return new WaitForSeconds(0.75f);
+        AudioSourceManager.instance.AudienceSE_Clip();
+        //yield return new WaitForSeconds(4f);
+        //AudioSourceManager.instance.AudienceSE2_Clip();
+    }
+
     public void ParipiMode(bool x)
     {
         if (x == true)
         {
             // PARIPI MODE!
-            audioSourceNormal.Stop();
+            // audioSourceNormal.Stop();
+            ShowTimeReadyMethod(false);
             audioSourceParipi.Play();
             gameSpeed = 2.5f;
         }
@@ -116,12 +148,13 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    private void PanelDisplay(bool x)
+    private void PanelDisplay(bool x) // MainCanvasパネルのオンオフ
     {
         TitlePanel.SetActive(x);
         HeartPanel.SetActive(!x);
         CountDownPanel.SetActive(!x);
         ScorePanel.SetActive(!x);
+        // ShowTimeReadyPanel.SetActive(!x);
     }
 
     private void FixedUpdate()

@@ -6,7 +6,8 @@ public class ItemGenerator : MonoBehaviour
 {
     //public GameObject applePrefab;
 
-    [SerializeField] GameObject[] fruitPrefabs;
+    [SerializeField]
+    GameObject[] fruitPrefabs;
 
     public GameObject KOBAN_prefab;
 
@@ -14,14 +15,17 @@ public class ItemGenerator : MonoBehaviour
 
     Player player = null;
 
-    float startNum, spawnNum;
-    float startNum2, spawnNum2;
+    float startNum,
+        spawnNum;
+    float startNum2,
+        spawnNum2;
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         RandomNum();
 
-        InvokeRepeating("RandomNum", 10f, 10f);
+        InvokeRepeating("RandomNum", 1f, 1f);
         InvokeRepeating("RandomItemSpawn", startNum, spawnNum / GameDataManager.gameSpeed);
         InvokeRepeating("RandomItemSpawn", startNum2, spawnNum2 / GameDataManager.gameSpeed);
         //InvokeRepeating("RandomRareItemSpawn", 3f, 12f);
@@ -30,12 +34,19 @@ public class ItemGenerator : MonoBehaviour
 
     void RandomNum()
     {
-        startNum = Random.Range(1.2f, 1.8f);
-        spawnNum = Random.Range(6.5f, 8.0f);       
-        startNum2 = Random.Range(1.5f, 2.6f);
-        spawnNum2 = Random.Range(9.5f, 15.0f);              
+        
+        if (player.state == Player.STATE.NORMAL || player.state == Player.STATE.SHOWTIMEREADY)
+        {
+            startNum = Random.Range(1.2f, 1.8f);
+            spawnNum = Random.Range(6.5f, 8.0f);
+            startNum2 = Random.Range(1.5f, 2.6f);
+            spawnNum2 = Random.Range(9.5f, 15.0f);
+        }
+        else if(player.state == Player.STATE.MUTEKI)
+        {
+            spawnNum2 = Random.Range(2f, 2f);
+        }
     }
-
 
     void RandomItemSpawn()
     {
@@ -104,7 +115,7 @@ public class ItemGenerator : MonoBehaviour
         if (GameDataManager.gameState == GameDataManager.GAMESTAGESTATE.GAMENOW)
         {
             Debug.Log("KOBAN Spawn!");
-            if (player.state == Player.STATE.NORMAL)
+            if (player.state == Player.STATE.NORMAL || player.state == Player.STATE.SHOWTIMEREADY)
             {
                 Instantiate(KOBAN_prefab, spawnPoint, transform.rotation);
             }

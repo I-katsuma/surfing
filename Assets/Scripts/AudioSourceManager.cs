@@ -9,9 +9,13 @@ public class AudioSourceManager : MonoBehaviour
     [SerializeField] public AudioSource audioSource = null;
 
     [SerializeField] private AudioClip ItemSE;
+    [SerializeField] private AudioClip RareItemSE;
     [SerializeField] private AudioClip KobanSE;
-    [SerializeField] private AudioClip damegeSE1;
-    [SerializeField] private AudioClip damegeSE2;
+
+    [SerializeField] private AudioClip standbySE;
+    [SerializeField] private AudioClip audienceSE;
+    [SerializeField] private AudioClip audienceSE2;
+
     private void Awake()
     {
 
@@ -59,13 +63,13 @@ public class AudioSourceManager : MonoBehaviour
         }
     }
 
-    public void DamageSEClipA()
+    public void RareItemSE_Clicp()
     {
         if(audioSource != null)
         {
             // 指定した音を一回鳴らす
             // 既になっている音に重複する
-            audioSource.PlayOneShot(damegeSE1);
+            audioSource.PlayOneShot(RareItemSE);
         }
         else
         {
@@ -73,17 +77,28 @@ public class AudioSourceManager : MonoBehaviour
         }
     }
 
-    public void DamageSEClipB()
+    public void StandbySE_Clip()
     {
         if(audioSource != null)
         {
-            // 指定した音を一回鳴らす
-            // 既になっている音に重複する
-            audioSource.PlayOneShot(damegeSE2);
-        }
-        else
-        {
-            Debug.Log("オーディオソースがありません");
+            audioSource.PlayOneShot(standbySE);
         }
     }
+
+    public void AudienceSE_Clip()
+    {
+        if(audioSource != null)
+        {
+            audioSource.PlayOneShot(audienceSE);
+        }
+    }
+
+    public void AudienceSE2_Clip()
+    {
+        if(audioSource != null)
+        {
+            audioSource.PlayOneShot(audienceSE2);
+        }
+    }
+
 }

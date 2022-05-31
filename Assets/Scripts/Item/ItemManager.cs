@@ -41,9 +41,17 @@ public class ItemManager : MonoBehaviour
         {
             if(other.CompareTag("Player") == true)
             {
-                Debug.Log("アイテム判定");
+                //Debug.Log("アイテム判定");
                 scoreManager.AddKoban();
                 scoreManager.AddScore(500);
+                Destroy(this.gameObject);
+            }
+        }
+        else if(this.gameObject.tag == "RareItem")
+        {
+            if (other.CompareTag("Player") == true)
+            {
+                scoreManager.AddScore(ItemScore);
                 Destroy(this.gameObject);
             }
         }

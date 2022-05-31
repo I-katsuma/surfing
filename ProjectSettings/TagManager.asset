@@ -8,6 +8,7 @@ TagManager:
   - ScoreItem
   - PowerItem
   - mobObject
+  - RareItem
   layers:
   - Default
   - TransparentFX
