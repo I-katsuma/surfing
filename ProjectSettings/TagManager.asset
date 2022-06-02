@@ -9,6 +9,7 @@ TagManager:
   - PowerItem
   - mobObject
   - RareItem
+  - Gimmick
   layers:
   - Default
   - TransparentFX

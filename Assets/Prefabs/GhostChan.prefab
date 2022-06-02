@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 2099421211412719853}
   m_Layer: 0
   m_Name: GhostChan
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myScore: 300
-  speedAid: 1.5
+  speedAid: 1.1
   Xmove: 0
   Ymove: 0
   Zmove: 0
@@ -265,11 +265,12 @@ MonoBehaviour:
   scoreManager: {fileID: 0}
   audioSourceManager: {fileID: 0}
   audioSource: {fileID: 2099421211412719853}
-  PlayerPosition: {x: 0, y: 0, z: 0}
+  targeting: {x: 0, y: 0}
   DurationSeconds: 1
   EaseType: 0
   spriteRenderer: {fileID: 2099421210062063469}
   rd2d: {fileID: 2099421211412719852}
+  homingNum: 0.2
 --- !u!50 &2099421211412719852
 Rigidbody2D:
   serializedVersion: 4

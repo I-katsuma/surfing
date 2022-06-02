@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (state == STATE.MUTEKI) // 無敵モード中の効果音設定
+        if (state == STATE.MUTEKI || state == STATE.DAMAGED) // 無敵モード中の効果音設定
         {
             if (other.gameObject.tag == "PowerItem") // 小判
             {
@@ -155,7 +155,6 @@ public class Player : MonoBehaviour
             if (other.gameObject.tag == "Enemy") // 敵
             {
                 //TODO: ぶつかった際にエフェクト
-                //TODO: てきふっとび演出
             }
             if(other.gameObject.tag == "mobObject")
             {
@@ -166,7 +165,8 @@ public class Player : MonoBehaviour
                 AudioSourceManager.instance.RareItemSE_Clicp();
             }
         }
-        else if (state == STATE.NORMAL || state == STATE.SHOWTIMEREADY)
+
+        else if (state == STATE.NORMAL || state == STATE.SHOWTIMEREADY) // ノーマル & ShowTimeReady
         {
             if(other.gameObject.tag == "RareItem")
             {
@@ -237,8 +237,8 @@ public class Player : MonoBehaviour
 
             if (i > 1)
             {
-                // stateをMUTEKIにする（点滅しながら動けるようになる）
-                state = STATE.MUTEKI;
+                // stateをDAMAGEにする（点滅しながら動けるようになる）
+                state = STATE.DAMAGED;
             }
         }
 

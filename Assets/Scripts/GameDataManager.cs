@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using NCMB;
+using DG.Tweening;
 
 public class GameDataManager : MonoBehaviour
 {
@@ -80,32 +81,29 @@ public class GameDataManager : MonoBehaviour
 
         // カウントダウン用
         PanelDisplay(false);
-        //gameReady = true;
         countDownTime = 3.5f;
     }
 
     public void RetryButtonOnclick() // リトライ
     {
-        // if (GameOverPanel.activeSelf == true)
         if(gameState == GAMESTAGESTATE.GAMEOVER)
         {
             gameSpeed = constGameSpeed;
             scoreManager.ResetKoban();
             scoreManager.ResetScore();
-            //Player.isGameOver = false;
-            //gameReady = false;
-            // gameStart = false;
+
             gameState = GAMESTAGESTATE.GAMEWAIT;
+            DOTween.Clear();
             SceneManager.LoadScene("GameScene");
         }
     }
 
     public void ShowTimeReadyMethod(bool x)
     {
-        
-        
         if(x == true)
         {
+            ShowTimeReadyPanel.SetActive(x); // まっくら照明演出
+            //PartyText.SetActive(x);
             audioSourceNormal.Stop(); // 一旦BGMを止める
             StartCoroutine("ShowTimeReadyAction");
         }
@@ -121,8 +119,8 @@ public class GameDataManager : MonoBehaviour
     {
         Debug.Log("ショータイムのはじまり...");
         yield return new WaitForSeconds(0.75f);
-
         AudioSourceManager.instance.StandbySE_Clip();
+        PartyText.SetActive(true);
         yield return new WaitForSeconds(0.75f);
         AudioSourceManager.instance.AudienceSE_Clip();
         //yield return new WaitForSeconds(4f);
@@ -135,7 +133,7 @@ public class GameDataManager : MonoBehaviour
         {
             // PARIPI MODE!
             // audioSourceNormal.Stop();
-            ShowTimeReadyMethod(false);
+            ShowTimeReadyMethod(false); // ShowTimeReady終了
             audioSourceParipi.Play();
             gameSpeed = 2.5f;
         }
@@ -161,7 +159,6 @@ public class GameDataManager : MonoBehaviour
     {
         GameStateText.text = "GameStageState : " + gameState;  
 
-        //if (gameReady)
         if(gameState == GAMESTAGESTATE.GAMELEADY)
         {
             // カウントダウン実施
@@ -171,12 +168,10 @@ public class GameDataManager : MonoBehaviour
             {
                 countDownTime = 0.0f;
 
-                // gameStart = true;
                 gameState = GAMESTAGESTATE.GAMENOW; 
                 Debug.Log("GAME START!");
                 Debug.Log(gameState);                
                 CountDownPanel.SetActive(false);
-                //gameReady = false;
             }
         }
 
@@ -186,6 +181,8 @@ public class GameDataManager : MonoBehaviour
     {
         gameState = GAMESTAGESTATE.GAMEOVER;
         int score = scoreManager.resultScoreApper();
+
+        ShowTimeReadyMethod(false);
 
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
         

@@ -7,19 +7,16 @@ using DG.Tweening.Plugins.Options;
 
 public class BardEnemy : Enemy
 {
-    //private float offset;
+    private float offset;
 
-    [SerializeField]
-    GameObject spriteObj;
+    [SerializeField] GameObject spriteObj;
 
-    [SerializeField]
-    private float _durationSecounds = 0.25f;
+    // [SerializeField] private float _durationSecounds = 0.25f;
 
-    private float _initY = 0;
-    private float _endY = 0;
+    //private float _initY = 0;
+    //private float _endY = 0;
 
-    [SerializeField]
-    private float _moveY = 0.4f;
+    // [SerializeField] private float _moveY = 0.4f;
 
     private TweenerCore<Vector3, Vector3, VectorOptions> _tweener;
 
@@ -28,32 +25,49 @@ public class BardEnemy : Enemy
     void Start()
     {
         InitSet();
-        InitObjSet();
+        //InitObjSet();
         // 波立動き用↓
-        //offset = Random.Range(0, 2f * Mathf.PI);
+        offset = Random.Range(0, 2f * Mathf.PI);
+        /*
         if (spriteObj != null)
         {
-            
             _tweener = spriteObj.transform
                 .DOMoveY(_endY, duration: _durationSecounds)
                 .SetEase(this.easeType)
                 .SetLoops(-1, LoopType.Yoyo)
                 .Play()
                 .SetLink(this.gameObject);
-
         }
+        */
     }
 
+    /*
     void InitObjSet()
     {
         _initY = spriteObj.transform.position.y;
         _endY = _initY - _moveY;
     }
+    */
 
-    void Update()
+    public override void EnemyMoveAction()
+    {
+        //base.EnemyMoveAction();
+        this.transform.position -= new Vector3(
+            Xmove = GameDataManager.gameSpeed * Time.deltaTime * speedAid,
+            Ymove,
+            Zmove
+        );
+
+        if (this.transform.position.x < -10)
+        {
+            DestroyAction();
+        }
+    }
+
+    void FixedUpdate()
     {
         // 縦揺れ用↓
-        //Ymove = Mathf.Cos(Time.frameCount * 0.05f + offset) * 0.01f;
+        Ymove = Mathf.Cos(Time.frameCount * 0.05f + offset) * 0.01f;
         
         if(GameDataManager.gameState == GameDataManager.GAMESTAGESTATE.GAMENOW)
         {
@@ -66,6 +80,12 @@ public class BardEnemy : Enemy
         }
 
     }
+
+    public void TweenKill()
+    {
+        _tweener.Kill();
+    }
+
 
     public override void DestroyAction()
     {

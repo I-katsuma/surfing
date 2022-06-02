@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BallBrothersEnemy : Enemy
 {
+    [SerializeField] SpriteRenderer IchiroSprite;
+    [SerializeField] SpriteRenderer JiroSrite;
+    [SerializeField] SpriteRenderer SaburoSprite;
+
     void Start()
     {
         InitSet();

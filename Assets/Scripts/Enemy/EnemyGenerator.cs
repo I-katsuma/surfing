@@ -10,6 +10,8 @@ public class EnemyGenerator : MonoBehaviour
     public GameObject BlueFishMan;
     public GameObject BallBrathersPlafas;
 
+    public GameObject[] Enemies;
+
     public GameObject LuckyFrog;
 
     // [SerializeField] GameDataManager gameDataManager;
@@ -64,9 +66,11 @@ public class EnemyGenerator : MonoBehaviour
         {
             if (nowStage == NOWSTAGE.STAGE5)
             {
-                Spawn(BardPrefab, -3f, 1f);
+                int num = Random.Range(0, Enemies.Length);
+                Spawn(Enemies[num], -3f, 1f);
+                //Spawn(GhostChanPrefab, -3f, 1f);
                 //Spawn(BlueFishMan, -4.5f, 0.5f);
-                Spawn(BallBrathersPlafas, -4f, 1f);
+                //Spawn(BallBrathersPlafas, -4f, 1f);
             }
             else if (nowStage == NOWSTAGE.STAGE4)
             {
@@ -87,6 +91,8 @@ public class EnemyGenerator : MonoBehaviour
             {
                 //Spawn(GhostChanPrefab, -3f, 1f);
                 Spawn(BardPrefab, -3f, 1f);
+                //Spawn(BlueFishMan, -4.5f, 0.5f);
+                //Spawn(BallBrathersPlafas, -4f, 1f);
             }
         }
     }

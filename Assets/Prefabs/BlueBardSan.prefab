@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myScore: 300
-  speedAid: 1
+  speedAid: 1.5
   Xmove: 0
   Ymove: 0
   Zmove: 0
@@ -298,9 +298,8 @@ MonoBehaviour:
   scoreManager: {fileID: 0}
   audioSourceManager: {fileID: 0}
   audioSource: {fileID: 7934270267389646380}
+  targeting: {x: 0, y: 0}
   spriteObj: {fileID: 5464841225803999776}
-  _durationSecounds: 0.25
-  _moveY: 0.4
   easeType: 3
 --- !u!1 &7934270268085412603
 GameObject:

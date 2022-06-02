@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum name
-{
-    Bard,
-    Ballkun,
-    Yadokari,
-    GhostChan,
-    BlueFish
-}
-
 public abstract class Enemy : MonoBehaviour
 {
     public int myScore;
@@ -37,10 +28,8 @@ public abstract class Enemy : MonoBehaviour
 
     public AudioSource audioSource;
 
-    private void Start() {
-        
+    public Vector2 targeting;
 
-    }
 
     public void InitSet()
     {
@@ -61,7 +50,6 @@ public abstract class Enemy : MonoBehaviour
             Zmove
         );
         
-        //this.transform.position.x -= Xmove;
 
         if (this.transform.position.x < -10)
         {
@@ -86,11 +74,34 @@ public abstract class Enemy : MonoBehaviour
                 scoreManager.AddScore(myScore);
             }
             else if (player.state == Player.STATE.MUTEKI)
-            {
+            {   
+                /*
+                if(other.gameObject.name == "BlueBardSan")
+                {
+                    BardEnemy bard = other.gameObject.GetComponent<BardEnemy>();
+                    bard.TweenKill();
+                }
+                */
+                this.coll2D.enabled = false;
                 audioSource.PlayOneShot(damageSE);
                 scoreManager.AddScore(myScore);
-                DestroyAction();
+                StartCoroutine("DamageAction");
+                //DestroyAction();
             }
         }
+    }
+
+    IEnumerator DamageAction()
+    {
+        Debug.Log("DamageAction");
+        targeting = (player.transform.position - this.gameObject.transform.position).normalized;
+        int i = 0;
+        while(i < 10)
+        {    
+            yield return new WaitForSeconds(0.02f);
+            this.gameObject.transform.Translate(targeting.x * -1f, targeting.y * 1.5f, 0);
+            i++;
+        }
+        DestroyAction();
     }
 }

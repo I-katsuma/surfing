@@ -24,13 +24,13 @@ public class ItemGenerator : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         RandomNum();
-
-        InvokeRepeating("RandomNum", 1f, 1f);
+        InvokeRepeating("RandomNum", 3f, 3f);
         InvokeRepeating("RandomItemSpawn", startNum, spawnNum / GameDataManager.gameSpeed);
         InvokeRepeating("RandomItemSpawn", startNum2, spawnNum2 / GameDataManager.gameSpeed);
         //InvokeRepeating("RandomRareItemSpawn", 3f, 12f);
         InvokeRepeating("KOBAN_Spawn", 3f, 12f);
     }
+
 
     void RandomNum()
     {
@@ -44,7 +44,15 @@ public class ItemGenerator : MonoBehaviour
         }
         else if(player.state == Player.STATE.MUTEKI)
         {
-            spawnNum2 = Random.Range(2f, 2f);
+            Debug.Log("フィーバーたいむ！");
+            //spawnNum2 = Random.Range(2f, 2f);
+            //spawnNum = Random.Range(1.5f, 1.5f);
+            Invoke("RandomItemSpawn", startNum);
+            Invoke("RandomItemSpawn", startNum2);           
+        }
+        else
+        {
+            return;
         }
     }
 
