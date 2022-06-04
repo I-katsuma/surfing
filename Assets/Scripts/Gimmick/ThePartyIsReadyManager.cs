@@ -4,32 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-
 public class ThePartyIsReadyManager : MonoBehaviour
 {
-    [SerializeField] GameObject ThisGameObj;
+    [SerializeField]
+    GameObject ThisGameObj;
 
-    [SerializeField] Text ThisGameObjectText;
-
-    Sequence sequence;
+    [SerializeField]
+    Text ThisGameObjectText;
 
     public Ease EaseType;
 
     private void OnEnable()
     {
-        if (ThisGameObj.name == "PartyText")
-        {
-            //Debug.Log("PartyText");
-            //Invoke("PlayerTextMethod", 1.5f);
-            StartCoroutine("PlayerTextMethod");
-        }
+        //Debug.Log("PartyText");
+        StartCoroutine("PlayerTextMethod");
     }
+
+
     private void OnDisable() // このオブジェクトが消えたら
     {
-        if(DOTween.instance != null)
+        if (DOTween.instance != null)
         {
-            //Debug.Log("sequence.Kill()");
-            //sequence.Kill();
+
         }
     }
 
@@ -37,16 +33,10 @@ public class ThePartyIsReadyManager : MonoBehaviour
     {
         Debug.Log("PlayerTextMethod");
 
+        yield return new WaitForSeconds(1f);
+        ThisGameObjectText.DOFade(0.0f, 1f)
+        .SetEase(this.EaseType)
+        .SetLoops(-1, LoopType.Yoyo);
 
-
-        yield return new WaitForSeconds(1.5f);
-        
-        sequence = DOTween.Sequence()
-        .Append(
-            ThisGameObjectText.DOFade(0.0f, 1f).SetEase(this.EaseType).SetLoops(-1, LoopType.Yoyo)
-            .Play()
-            .SetLink(this.gameObject)
-        );
-        
     }
 }

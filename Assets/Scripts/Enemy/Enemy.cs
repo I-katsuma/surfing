@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -29,7 +30,12 @@ public abstract class Enemy : MonoBehaviour
     public AudioSource audioSource;
 
     public Vector2 targeting;
+    public Sequence sequence;
 
+
+    private void Start() {
+        //sequence = DOTween.Sequence();
+    }
 
     public void InitSet()
     {
@@ -83,6 +89,7 @@ public abstract class Enemy : MonoBehaviour
                 }
                 */
                 this.coll2D.enabled = false;
+                sequence.Kill();
                 audioSource.PlayOneShot(damageSE);
                 scoreManager.AddScore(myScore);
                 StartCoroutine("DamageAction");
@@ -94,14 +101,15 @@ public abstract class Enemy : MonoBehaviour
     IEnumerator DamageAction()
     {
         Debug.Log("DamageAction");
+        
         targeting = (player.transform.position - this.gameObject.transform.position).normalized;
-        int i = 0;
-        while(i < 10)
-        {    
-            yield return new WaitForSeconds(0.02f);
-            this.gameObject.transform.Translate(targeting.x * -1f, targeting.y * 1.5f, 0);
-            i++;
-        }
+        this.gameObject.transform.DOMove(new Vector3(
+            targeting.x * -1f + 50f,
+            targeting.y * 1.5f + 25f,
+            0
+        ), 1.5f).Play().SetLink(this.gameObject);
+
+        yield return new WaitForSeconds(3f);
         DestroyAction();
     }
 }

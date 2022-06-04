@@ -16,6 +16,7 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] Player player;
     [SerializeField] GameDataManager gameDataManager;              
+    [SerializeField] KobanGuageManager kobanGuageManager;
     /*
     private void Awake() {
 
@@ -71,7 +72,8 @@ public class ScoreManager : MonoBehaviour
                 player.state = Player.STATE.SHOWTIMEREADY;
                 gameDataManager.ShowTimeReadyMethod(true);
             }
-            KOBAN_score++; 
+            KOBAN_score++;
+            kobanGuageManager.SetKobanGuage(1);
         }
         else
         {
@@ -83,6 +85,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetKoban()
     {
         KOBAN_score = 0;
+        kobanGuageManager.ReSetKobanGuage();
         getKOBANtext.text = string.Format("x" + KOBAN_score);
     }
 

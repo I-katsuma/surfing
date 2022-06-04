@@ -5,16 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public GameObject BardPrefab;
-    public GameObject GhostChanPrefab;
-    public GameObject BlueFishMan;
-    public GameObject BallBrathersPlafas;
-
     public GameObject[] Enemies;
 
     public GameObject LuckyFrog;
-
-    // [SerializeField] GameDataManager gameDataManager;
 
     public enum NOWSTAGE
     {
@@ -27,31 +20,26 @@ public class EnemyGenerator : MonoBehaviour
 
     public static NOWSTAGE nowStage;
 
-    static int nowNum = 1;
+    int nowNum = 1;
 
     [SerializeField]
-    Text nosSategeText;
+    Text nowSategeText;
 
     float startNum;
     float spawnNum;
 
-    [SerializeField]
-    Player player;
+    [SerializeField] Player player;
 
     void Start()
     {
         nowStage = NOWSTAGE.STAGE1;
-        nosSategeText.text = "NowStage : " + nowNum.ToString();
+        nowNum = 1;
+        NowStageMetnod(nowNum);
         RandomNum();
 
         InvokeRepeating("RandomNum", 10f, 10f);
         InvokeRepeating("MobSpawnEnterA", startNum, spawnNum / GameDataManager.gameSpeed);
         InvokeRepeating("MobSpawnEnterB", 130f, 120f); // LuckyFrog
-    }
-
-    private void FixedUpdate()
-    {
-        nosSategeText.text = "NowStage : " + nowNum.ToString();
     }
 
     void RandomNum()
@@ -64,38 +52,45 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (GameDataManager.gameState == GameDataManager.GAMESTAGESTATE.GAMENOW)
         {
+
             if (nowStage == NOWSTAGE.STAGE5)
             {
                 int num = Random.Range(0, Enemies.Length);
-                Spawn(Enemies[num], -3f, 1f);
-                //Spawn(GhostChanPrefab, -3f, 1f);
-                //Spawn(BlueFishMan, -4.5f, 0.5f);
-                //Spawn(BallBrathersPlafas, -4f, 1f);
+                Spawn(Enemies[num], -3.5f, 1f);
+                ParipiCheck(num);
             }
             else if (nowStage == NOWSTAGE.STAGE4)
             {
-                //Spawn(BlueFishMan, -4.5f, 0.5f);
-                Spawn(BallBrathersPlafas, -4f, 1f);
+                Spawn(Enemies[3], -4f, 1f);
+                ParipiCheck(3);
             }
             else if (nowStage == NOWSTAGE.STAGE3)
             {
-                //Spawn(GhostChanPrefab, -3f, 1f);
-                Spawn(BlueFishMan, -4.5f, 0.5f);
+                Spawn(Enemies[2], -4f, 0.5f);
+                ParipiCheck(2);
             }
             else if (nowStage == NOWSTAGE.STAGE2)
             {
-                Spawn(GhostChanPrefab, -3f, 1f);
-                //Spawn(BardPrefab, -3f, 1f);
+                Spawn(Enemies[1], -3f, 1f);
+                ParipiCheck(1);
             }
             else // stage1
             {
-                //Spawn(GhostChanPrefab, -3f, 1f);
-                Spawn(BardPrefab, -3f, 1f);
-                //Spawn(BlueFishMan, -4.5f, 0.5f);
-                //Spawn(BallBrathersPlafas, -4f, 1f);
+                Spawn(Enemies[0], -3f, 1f);
+                ParipiCheck(0);
             }
         }
     }
+
+    void ParipiCheck(int num)
+    {
+
+        if(player.state == Player.STATE.MUTEKI)
+        {
+            Spawn(Enemies[num], -3f, 1f);
+        }
+    }
+
 
     void MobSpawnEnterB()
     {
@@ -103,15 +98,22 @@ public class EnemyGenerator : MonoBehaviour
         {
             if (player.state == Player.STATE.NORMAL)
             {
-                Spawn(LuckyFrog, 3f, 1f);
+                if (nowStage != NOWSTAGE.STAGE5)
+                {
+                    return;
+                }
+                else
+                {
+                    Spawn(LuckyFrog, 3f, 1f);
+                }
             }
         }
     }
 
-    public static void StageChangeButton()
+    public void StageChangeButton()
     {
         nowNum++;
-
+        NowStageMetnod(nowNum);
         if (nowNum < 6)
         {
             switch (nowNum)
@@ -140,6 +142,11 @@ public class EnemyGenerator : MonoBehaviour
         {
             nowNum = 5;
         }
+    }
+
+    void NowStageMetnod(int num)
+    {
+        nowSategeText.text = "STAGE : " + num.ToString();
     }
 
     void Spawn(GameObject prefab, float rangeA, float rangeB)

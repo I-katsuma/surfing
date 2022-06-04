@@ -67,8 +67,6 @@ public class GameDataManager : MonoBehaviour
         audioSourceNormal.Play();
 
         gameSpeed = constGameSpeed;
-        //gameReady = false;
-        //gameStart = false;
 
         PanelDisplay(true);
         GameOverPanel.SetActive(false);
@@ -131,8 +129,7 @@ public class GameDataManager : MonoBehaviour
     {
         if (x == true)
         {
-            // PARIPI MODE!
-            // audioSourceNormal.Stop();
+            // PARIPI MODEに入ったら...!
             ShowTimeReadyMethod(false); // ShowTimeReady終了
             audioSourceParipi.Play();
             gameSpeed = 2.5f;
@@ -152,7 +149,6 @@ public class GameDataManager : MonoBehaviour
         HeartPanel.SetActive(!x);
         CountDownPanel.SetActive(!x);
         ScorePanel.SetActive(!x);
-        // ShowTimeReadyPanel.SetActive(!x);
     }
 
     private void FixedUpdate()

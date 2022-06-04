@@ -6,13 +6,14 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
 
-    GameDataManager gameDataManager;
+    [SerializeField] GameDataManager gameDataManager;
 
-    ScoreManager scoreManager;
+    [SerializeField] ScoreManager scoreManager;
 
     readonly float flashInterval = 0.08f; // 点滅間隔 0.08
     readonly int loopCount = 20; // 点滅させるときのループカウント 20
-    [SerializeField] int paripiTimeCount = 36; // パリピタイムのカウント 
+    private int paripiTimeCount = 36; // パリピタイムのカウント 
+    
     [SerializeField] private SpriteRenderer spCat; // 点滅させるためのSpriteRenderer
     [SerializeField] private SpriteRenderer spDog;
 
@@ -49,18 +50,15 @@ public class Player : MonoBehaviour
     private readonly float playerPosXClamp = 2.2f;
     private readonly float playerPoxYClamp = 1.6f;
 
-    public float paripiInterval = 1f;
+    [HideInInspector] public float paripiInterval = 1f;
 
-    public float DurationSeconds = 1f;
+    [HideInInspector] public float DurationSeconds = 1f;
 
     public Ease EaseType;
 
     private void Start()
     {
-
         ParipiImage.color = new Color32(255, 255, 255, 0);
-        gameDataManager = GameObject.Find("GameDataManager").GetComponent<GameDataManager>();
-        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
         SurfDog.SetActive(true);
 
@@ -86,7 +84,7 @@ public class Player : MonoBehaviour
 
         if(state == STATE.SHOWTIMEREADY) // 小判4枚集めたら照明を落とす
         {
-            //gameDataManager.ShowTimeReadyMethod(true); // スタンバイモード
+
         }
         if (state == STATE.PARIPI) // パリピモードに入ったら
         {
@@ -97,7 +95,6 @@ public class Player : MonoBehaviour
 
         if (state == STATE.MUTEKI) 
         {
-            //TODO:無敵中は小判が増えないようにしたい
         }
 
         // 動くべき方向に変数に格納
@@ -177,7 +174,6 @@ public class Player : MonoBehaviour
                 AudioSourceManager.instance.KobanSEClip();
                 if (scoreManager.KOBAN_score < 5)
                 {
-                    //TODO: SPEED UP!オンオフ
                     GameDataManager.gameSpeed += 0.2f;
                     SpeedUpPanel.SetActive(true);
                 }
@@ -251,7 +247,7 @@ public class Player : MonoBehaviour
     IEnumerator _paripi()
     {
         Debug.Log("ぱりぴモード！");
-        scoreManager.ResetKoban();
+        
         state = STATE.MUTEKI;
         ChangePlayerSetMode(true);
 
@@ -265,7 +261,7 @@ public class Player : MonoBehaviour
         }
         
         state = STATE.NORMAL;
-        
+        scoreManager.ResetKoban();
         ParipiImage.color = new Color32(255, 255, 255, 0);
         ChangePlayerSetMode(false);
 

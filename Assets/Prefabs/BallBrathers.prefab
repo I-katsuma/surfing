@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1122213789734777734}
   - component: {fileID: 1122213789734777729}
   m_Layer: 0
-  m_Name: BallBarothers
+  m_Name: BallBrathers
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

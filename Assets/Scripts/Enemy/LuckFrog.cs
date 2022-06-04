@@ -14,6 +14,7 @@ public class LuckFrog : MonoBehaviour
     public Collider2D col2D;
     Player player;
     ScoreManager scoreManager;
+    EnemyGenerator enemyGenerator;
     public AudioSource audioSource;
 
     public GameObject spriteObj;
@@ -21,6 +22,7 @@ public class LuckFrog : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        enemyGenerator = GameObject.Find("EnemyGenerator").GetComponent<EnemyGenerator>();
     }
 
     void Update()
@@ -49,20 +51,23 @@ public class LuckFrog : MonoBehaviour
         // Debug.Log(this.gameObject + " が " + other.gameObject + " とぶつかったよ");
         if (other.CompareTag("Player") == true)
         {
-            bool flag = false;
+            /*
+            bool flag = false; // 
 
             if (flag == false)
-            {
+            {*/
                 this.col2D.enabled = false;
-                spriteObj.SetActive(false);
-                EnemyGenerator.StageChangeButton();
+                enemyGenerator.StageChangeButton();
                 audioSource.PlayOneShot(damageSE);
                 scoreManager.AddScore(MyScore);
+                spriteObj.SetActive(false);
+            /*
             }
             else
             {
 
             }
+            */
         }
     }
 }
