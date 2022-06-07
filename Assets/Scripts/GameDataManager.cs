@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using NCMB;
 using DG.Tweening;
 
 public class GameDataManager : MonoBehaviour
@@ -180,7 +179,7 @@ public class GameDataManager : MonoBehaviour
 
         ShowTimeReadyMethod(false);
 
-        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
+        //naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
         
         scoreManager.ResultScore();
         ScorePanel.SetActive(false);

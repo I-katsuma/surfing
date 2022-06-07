@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "236296022622",
+    "project_id": "dogdesurfin",
+    "storage_bucket": "dogdesurfin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236296022622:android:fbf5dd4bf1c1a6ed4022cf",
+        "android_client_info": {
+          "package_name": "com.i_karusma.ClaraAndRocky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236296022622-a7ctvm6mv0mgih99f0dgv915ia6s5npd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1zkoQzKLWTsmBmvE5lUTCIX5oeufjUqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236296022622-a7ctvm6mv0mgih99f0dgv915ia6s5npd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
